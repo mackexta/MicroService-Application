@@ -13,6 +13,19 @@ pipeline {
                 }
             }
         }
+
+      withSonarQubeEnv('sonar-scanner') {
+    withCredentials([string(credentialsId: 'SONAR_TOKEN', variable: 'SONAR_TOKEN')]) {
+        sh '''
+            /var/lib/jenkins/tools/hudson.plugins.sonar.SonarRunnerInstallation/sonar-scanner/bin/sonar-scanner \
+            -Dsonar.projectKey=Microservice_Deployment \
+            -Dsonar.projectName=Microservice_Deployment \
+            -Dsonar.java.binaries=. \
+            -Dsonar.login=$SONAR_TOKEN
+        '''
+    }
+}
+
             stage('adservice') {
               steps {
                script {
