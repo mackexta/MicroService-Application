@@ -49,9 +49,9 @@ pipeline {
                script {
                  withDockerRegistry(credentialsId: 'dockerpass', toolName: 'docker') {
                     dir("/var/lib/jenkins/workspace/Microservice_Deployment/src/checkoutservice/") {
-                        sh "docker build -t tkibnyusuf/checkoutservice:latest ."
-                        sh "docker push tkibnyusuf/checkoutservice:latest"
-                        sh "docker rmi tkibnyusuf/checkoutservice:latest"
+                        sh "docker build -t kexta77/checkoutservice:latest ."
+                        sh "docker push kexta77/checkoutservice:latest"
+                        sh "docker rmi kexta77/checkoutservice:latest"
                         sh 'docker system prune -a -f --volumes'
                     }
                 }
